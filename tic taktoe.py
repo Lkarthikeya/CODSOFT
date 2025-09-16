@@ -1,29 +1,4 @@
-"""
-Tic-Tac-Toe (Unbeatable AI) - tic_tac_toe_ai.py
 
-This is a simple command-line game of Tic-Tac-Toe where you (the human)
-play against an AI that can never lose. The AI is powered by the
-**Minimax algorithm with Alpha-Beta Pruning**, a classic approach in
-game theory that ensures the computer always makes the best possible
-move.
-
-How to play:
-    - Run this file with Python.
-    - Pick whether you want to be X or O.
-    - Choose who plays first (you or the AI).
-    - Enter your move by typing a number 1–9 that corresponds to
-      the positions on the board:
-
-        1 | 2 | 3
-        ---------
-        4 | 5 | 6
-        ---------
-        7 | 8 | 9
-
-The AI will think and make its move. The game continues until someone
-wins or the board is full (a draw). Good luck beating it — spoiler: you
-can’t!
-"""
 
 from typing import List, Optional, Tuple
 import math
@@ -41,12 +16,12 @@ WIN_LINES = [
 
 
 def new_board() -> Board:
-    """Start with an empty 3x3 board."""
+   
     return [None] * 9
 
 
 def pretty_board(board: Board) -> str:
-    """Return a nicely formatted string representation of the board."""
+   
     def cell(i: int) -> str:
         return board[i] if board[i] is not None else str(i + 1)
 
@@ -60,7 +35,7 @@ def print_board(board: Board) -> None:
 
 
 def check_winner(board: Board) -> Optional[str]:
-    """Check if someone has won. Return 'X', 'O', or None."""
+   
     for a, b, c in WIN_LINES:
         if board[a] and board[a] == board[b] == board[c]:
             return board[a]
@@ -68,17 +43,17 @@ def check_winner(board: Board) -> Optional[str]:
 
 
 def is_board_full(board: Board) -> bool:
-    """Return True if there are no empty cells left."""
+    
     return all(cell is not None for cell in board)
 
 
 def game_over(board: Board) -> bool:
-    """Return True if the game is finished (win or draw)."""
+    
     return check_winner(board) is not None or is_board_full(board)
 
 
 def available_moves(board: Board) -> List[int]:
-    """Return a list of indices where moves can be played."""
+    
     return [i for i, v in enumerate(board) if v is None]
 
 
@@ -87,17 +62,7 @@ def opponent(player: str) -> str:
 
 
 def minimax(board: Board, player: str, maximizing: bool, alpha: int, beta: int) -> Tuple[int, Optional[int]]:
-    """
-    The Minimax algorithm with Alpha-Beta pruning.
-
-    - If it's 'X'’s turn, we try to maximize the score.
-    - If it's 'O'’s turn, we try to minimize the score.
-
-    Scores:
-        +1 -> 'X' wins
-        -1 -> 'O' wins
-         0 -> draw
-    """
+    
     winner = check_winner(board)
     if winner == 'X':
         return 1, None
@@ -235,3 +200,4 @@ def play_game():
 
 if __name__ == '__main__':
     play_game()
+
